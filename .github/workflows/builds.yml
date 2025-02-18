@@ -36,6 +36,19 @@ jobs:
           target: esp32c6
           path: './firmware'
           command: "./get_builds.sh ${{ env.TAG_NAME }}"
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: minino-release-${{ env.TAG_NAME }}
+          path: ./firmware/minino-release-${{ env.TAG_NAME }}
+
+      - name: Print tag name
+        run: echo "Tag Name -> ${{ env.TAG_NAME }}"
+      
+      - name: List release folder contents
+        run: ls -la ./firmware/minino-release-${{ env.TAG_NAME }}
+
   
   release:  
     needs: build
