@@ -38,7 +38,7 @@ jobs:
           command: "./get_builds.sh ${{ env.TAG_NAME }}"
 
       - name: Upload release artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: minino-release-${{ env.TAG_NAME }}
           path: ./firmware/minino-release-${{ env.TAG_NAME }}
@@ -59,6 +59,7 @@ jobs:
         with:
           name: minino-release-${{ env.TAG_NAME }}
           path: ./release/
+      - run: ls ./release/
 
       - name: Release Firmware
         uses: ncipollo/release-action@v1
