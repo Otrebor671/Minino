@@ -54,6 +54,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      
+      - name: Extract tag version
+        id: extract_tag
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
       - name: Download release files
         uses: actions/download-artifact@v4
         with:
